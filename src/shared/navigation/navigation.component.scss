@@ -1,0 +1,22 @@
+@import '../../assets/scss/variables';
+
+$module: 'navigation-wrapper';
+
+.#{$module} {
+    background: $color-main-white;
+    box-shadow: 0px 1px 5px rgb(177, 177, 177);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__logo-wrapper {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .logo {
+        height: 45px;
+        width: 75px;
+    }
+}

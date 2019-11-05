@@ -1,4 +1,4 @@
-# Backend part of the Sports history and rules catalogue NBU project
+# Frontend part of the Sports history and rules catalogue NBU project
 #### Project dependencies
 1. [Angular CLI](https://github.com/angular/angular-cli) current version is 8.3.0
 2. [Node.js](https://nodejs.org/en/) current version is 12.13.0 LTS

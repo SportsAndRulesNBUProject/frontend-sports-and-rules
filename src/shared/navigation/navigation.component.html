@@ -1,18 +1,28 @@
-<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-    <mat-icon>more_vert</mat-icon>
-</button>
+<div class="navigation-wrapper global-wrapper">
+    <div class="navigation-wrapper__logo-wrapper">
+        <div>
+            <img class="logo" src="../../assets/img/parrot-sports-logo.png" />
+        </div>
+        <div>
+            <h3>Parrot Sports</h3>
+        </div>
+    </div>
 
-<mat-menu #menu="matMenu">
-    <button mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-        <span>Redial</span>
-    </button>
-    <button mat-menu-item disabled>
-        <mat-icon>voicemail</mat-icon>
-        <span>Check voice mail</span>
-    </button>
-    <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
-        <span>Disable alerts</span>
-    </button>
-</mat-menu>
+    <div class="navigation-wrapper__menu-button-wrapper">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>menu</mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>
+                    <span>placeholder_1</span>
+                </button>
+                <button mat-menu-item>
+                    <span>placeholder_2</span>
+                </button>
+                <button mat-menu-item>
+                    <span>placeholder_3</span>
+                </button>
+            </mat-menu>
+        </div>
+</div>
