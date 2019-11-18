@@ -1,0 +1,28 @@
+<div class="navigation-wrapper global-wrapper">
+    <div class="navigation-wrapper__logo-wrapper">
+        <div>
+            <img class="logo" src="../../assets/img/parrot-sports-logo.png" />
+        </div>
+        <div>
+            <h3>Parrot Sports</h3>
+        </div>
+    </div>
+
+    <div class="navigation-wrapper__menu-button-wrapper">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>menu</mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>
+                    <span>placeholder_1</span>
+                </button>
+                <button mat-menu-item>
+                    <span>placeholder_2</span>
+                </button>
+                <button mat-menu-item>
+                    <span>placeholder_3</span>
+                </button>
+            </mat-menu>
+        </div>
+</div>
