@@ -1,0 +1,37 @@
+<div class="login-form-container">
+	<form [formGroup]="loginForm"  autocomplete="off">
+	  <mat-form-field>
+		<mat-label>Username</mat-label>
+		<input formControlName="username" matInput type="text" placeholder="username">
+		<mat-error *ngIf="loginForm.controls.username?.errors?.required">
+			Username is required.
+		  </mat-error>
+		<mat-error *ngIf="loginForm.controls.username?.errors?.minlength">
+			Username should be at least 6 characters long.
+		  </mat-error>
+	  </mat-form-field>
+
+	  <br />
+	  <mat-form-field>
+		<mat-label>Password</mat-label>
+		<input formControlName="password" matInput type="password" placeholder="******">
+		<mat-error *ngIf="loginForm.controls.password?.errors?.required">
+			Password is required!
+		  </mat-error>
+		<mat-error *ngIf="loginForm.controls.password?.errors && loginForm.controls.password?.touched">
+			Password must contain minimum
+			eight characters, at least one letter,
+			one number and one special character!
+		  </mat-error>
+	  </mat-form-field>
+
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+
+
+	  <button id="login-btn" mat-raised-button color="primary" type="submit" (click)="login()"
+		[disabled]="!loginForm.valid">Login</button>
+	</form>
+  </div>

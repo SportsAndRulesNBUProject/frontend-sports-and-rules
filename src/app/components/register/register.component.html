@@ -1,0 +1,58 @@
+<div class="register-form-container">
+	<form [formGroup]="registerForm" autocomplete="off">
+
+	  <mat-form-field>
+		<mat-label>Username</mat-label>
+		<input formControlName="username" matInput type="text" placeholder="Your name here">
+		<mat-error *ngIf="registerForm.controls.username?.errors?.required">
+			Username is required!
+		  </mat-error>
+		  <mat-error *ngIf="registerForm.controls.username?.errors?.minlength">
+			Username should be at least 6 characters long.
+		  </mat-error>
+	  </mat-form-field>
+
+	  <br/><br/>
+
+	  <mat-form-field>
+		<mat-label>Email</mat-label>
+		<input formControlName="email" matInput type="text" placeholder="email@address.com">
+		<mat-error *ngIf="registerForm.controls.email?.errors?.required">
+			Email is required!
+		  </mat-error>
+		  <mat-error *ngIf="registerForm.controls.email?.errors?.pattern && registerForm.controls.email?.touched">
+			  Email is not valid!
+		  </mat-error>
+	  </mat-form-field>
+
+	  <br/><br/>
+
+	  <mat-form-field>
+		<mat-label>Password</mat-label>
+		<input formControlName="password" matInput type="password" placeholder="******">
+		<mat-error *ngIf="registerForm.controls.password?.errors?.required">
+			Password is required!
+		  </mat-error>
+		<mat-error *ngIf="registerForm.controls.password?.errors?.patern">
+			Password must contain minimum eight characters, at least one letter, one number and one special character!
+		  </mat-error>
+	  </mat-form-field>
+
+	  <br/><br/>
+
+	  <mat-form-field>
+		  <mat-label>Confirm password</mat-label>
+		  <input formControlName="confirmPassword" matInput type="password" placeholder="******">
+		  <mat-error *ngIf="registerForm.controls.password?.errors?.required">
+			  Password is required!
+			</mat-error>
+		  <mat-error *ngIf="registerForm.controls.password?.errors?.patern && registerForm.controls.email?.touched">
+			  Password must contain minimum eight characters, at least one letter, one number and one special character!
+			</mat-error>
+	  </mat-form-field>
+
+	  <br/><br/>
+
+	  <button mat-raised-button color="primary" (click)="register()" [disabled]="!registerForm.valid">Register</button>
+	</form>
+  </div>

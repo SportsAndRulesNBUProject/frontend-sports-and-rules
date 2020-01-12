@@ -1,0 +1,12 @@
+<button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon>Sports</button>
+<mat-sidenav-container class="example-sidenav-container"
+                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+		<app-sports-from-category-nav (changeSport)="this.changeSport($event)" [categorySports]="this.categorySports"></app-sports-from-category-nav>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+		<app-sports-category></app-sports-category>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

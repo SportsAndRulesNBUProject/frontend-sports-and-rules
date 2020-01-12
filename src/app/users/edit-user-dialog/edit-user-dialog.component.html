@@ -1,0 +1,57 @@
+<form [formGroup]="this.editUserForm">
+	<mat-form-field>
+		<mat-label>Username</mat-label>
+		<input formControlName="username" matInput type="text" />
+		<mat-error *ngIf="editUserForm.controls.username?.errors?.required">
+			Username is required!
+		</mat-error>
+		<mat-error *ngIf="editUserForm.controls.username?.errors?.minlength">
+			Username should be at least 6 characters long.
+		</mat-error>
+	</mat-form-field>
+	<br />
+	<mat-form-field>
+		<mat-label>Email</mat-label>
+		<input formControlName="email" matInput type="email" />
+		<mat-error *ngIf="editUserForm.controls.email?.errors?.required">
+			Email is required!
+		</mat-error>
+		<mat-error
+			*ngIf="
+				editUserForm.controls.email?.errors?.pattern &&
+				editUserForm.controls.email?.touched
+			"
+		>
+			Email is not valid!
+		</mat-error>
+	</mat-form-field>
+	<ng-container *ngIf="this.data.loggedUser.role === 'admin'">
+		<br />
+		<mat-form-field>
+			<mat-label>Role</mat-label>
+			<mat-select formControlName="role">
+				<mat-option [value]="'admin'">
+					Admin
+				</mat-option>
+				<mat-option [value]="'user'">
+					User
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</ng-container>
+	<br>
+	<button
+		mat-raised-button
+		color="primary"
+		(click)="editUser()"
+		[disabled]="!editUserForm.valid"
+	>
+		Save
+	</button>
+	<button
+		mat-button
+		(click)="onCancelClick()"
+	>
+		Cancel
+	</button>
+</form>

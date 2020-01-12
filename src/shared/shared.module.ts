@@ -1,24 +1,54 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavigationComponent } from './navigation/navigation.component';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// tslint:disable-next-line:max-line-length
+import { MatCardModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatListModule, MatOptionModule, MatSelectModule, MatSidenavModule, MatTabsModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { NotFoundComponent } from '../app/components/not-found/not-found.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     MatMenuModule,
     MatIconModule,
-    MatButtonModule,
+	MatButtonModule,
+	MatFormFieldModule,
+	FormsModule,
+    ReactiveFormsModule,
+	MatInputModule,
+	MatTabsModule,
+	MatDialogModule,
+	MatCardModule,
+	MatSidenavModule,
+	MatListModule,
+	MatSelectModule,
+	MatOptionModule,
   ],
   declarations: [
-    NavigationComponent
+	NavigationComponent,
+	NotFoundComponent,
   ],
   exports: [
-    NavigationComponent,
+	NavigationComponent,
+
+	CommonModule,
+    MatMenuModule,
+    MatIconModule,
+	MatButtonModule,
+	MatFormFieldModule,
+	FormsModule,
+    ReactiveFormsModule,
+	MatInputModule,
+	MatTabsModule,
+	MatDialogModule,
+	MatCardModule,
+	MatSidenavModule,
+	MatListModule,
+	MatSelectModule,
+	MatOptionModule,
   ],
 })
 

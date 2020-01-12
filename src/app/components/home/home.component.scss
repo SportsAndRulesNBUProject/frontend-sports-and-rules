@@ -1,0 +1,30 @@
+.sport-types-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 90%;
+	height: auto;
+	margin-left: 5%;
+	margin-top: 3%;
+}
+
+.sport-types-container > * {
+	box-sizing: border-box;
+}
+
+.sport-types-container > *:not(:last-child) {
+	// margin-right: 32px;
+	margin-bottom: 32px;
+}
+
+.sport-types-item {
+	text-align: center;
+	height: 15%;
+	width: 15%;
+	flex: 0 1 calc(50% - 32px);
+}
+
+
+
+
