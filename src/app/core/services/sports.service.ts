@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { SportDTO } from '../../sports/models/sport.dto';
 import { SportTypeDTO } from '../../sports/models/SportType.dto';
+import { SportCategoryDTO } from 'src/app/sports/models/sport-category.dto';
+import { HttpClient } from '@angular/common/http';
 
-export const sportTypes = [
+export const sportCategories = [
 	{
 		id: '1',
 		name: 'Winter sports',
@@ -53,13 +55,22 @@ export const sports = [
 export class SportsService {
 
   constructor(
+	  private readonly http: HttpClient,
   ) { }
 
-  getTypes(): Observable<SportTypeDTO[]> {
-	return of(sportTypes);
+  getAllCategories(): Observable<SportCategoryDTO[]> {
+	return this.http.get<SportCategoryDTO[]>(`//localhost:8080/api/sport-categories`);
+  }
+
+  getAllTypes(): Observable<SportTypeDTO[]> {
+	  return this.http.get<SportTypeDTO[]>(`//localhost:8080/api/sport-types/`);
   }
 
   getAllSportsFromType(typeId: string): Observable<SportDTO[]> {
 	return of(sports.filter(e => e.typeId === typeId));
+  }
+
+  getAllCategoriesFromType(typeId: string): Observable<SportCategoryDTO[]> {
+	  return ;
   }
 }

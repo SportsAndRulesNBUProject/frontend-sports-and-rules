@@ -5,6 +5,11 @@ import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { LoginDTO } from '../../users/models/login.dto';
 import { ShowUserDTO } from '../../users/models/show-user.dto';
 import { AuthCookieService } from './auth-cookie.service';
+import { HttpClient } from '@angular/common/http';
+import { MessageResponseDTO } from 'src/app/models/messageResponse.dto';
+import { RegisterDTO } from 'src/app/users/models/register.dto';
+import { LoginResponseDTO } from 'src/app/models/loginResponse.dto';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
@@ -18,29 +23,22 @@ export class AuthService {
 	constructor(
 		private readonly router: Router,
 		private readonly authCookieService: AuthCookieService,
-		private readonly helper: JwtHelperService
+		private readonly helper: JwtHelperService,
+		private readonly http: HttpClient,
 	) {}
 
 	public logIn(user: LoginDTO) {
-		// should call backend, pipe the responce, do the job with the token and return the observable
-		// tslint:disable-next-line:max-line-length
-		const mockToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFhYmMtMmFiYyIsInVzZXJuYW1lIjoic29tZW9uZSIsImVtYWlsIjoic29tZW9uZUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1MTkyMzkwMjJ9.ZbqThs4MVDqCVFGASaexZux_OtNWT5nwyDEV0_bNRwM';
-		const mockUser = { username: 'someone', password: '!12345678a' };
-		if (
-			user.username === mockUser.username &&
-			user.password === mockUser.password
-		) {
-			this.authCookieService.set('token', mockToken);
-			const { iat, ...userFromToken } = this.getDecodedAccessToken(
-				mockToken
-			);
-			this.isLoggedSubject$.next(true);
-			this.loggedUserSubject$.next(userFromToken);
+		return this.http.post<LoginResponseDTO>(`//localhost:8080/api/auth/signin`, user).pipe(
+			tap(
+				(res: LoginResponseDTO) => {
+					console.log(res);
 
-			return of(mockToken);
-		} else {
-			return throwError({ msg: 'Invalid user' });
-		}
+					this.authCookieService.set('token', res.token);
+					this.isLoggedSubject$.next(true);
+					this.loggedUserSubject$.next({ username: res.username, id: res.id, email: res.email, role: res.roles });
+				},
+			)
+		);
 	}
 
 	public logout() {
@@ -49,12 +47,12 @@ export class AuthService {
 
 		this.isLoggedSubject$.next(false);
 		this.loggedUserSubject$.next(null);
-
 		this.router.navigate(['/']);
 	}
 
-	public register() {
+	public register(user: RegisterDTO) {
 		// call backend and return observable
+		return this.http.post<MessageResponseDTO>(`//localhost:8080/api/auth/signup`, user);
 	}
 
 	public isTokenExpired() {

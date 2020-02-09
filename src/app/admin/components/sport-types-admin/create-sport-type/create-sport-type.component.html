@@ -1,0 +1,21 @@
+<div>
+	<form [formGroup]="this.createSportTypeForm">
+		<mat-form-field>
+		<mat-label>Name</mat-label>
+		<input formControlName="name" matInput type="text" placeholder="label name">
+		<mat-error *ngIf="this.createSportTypeForm.controls.name?.errors?.required">
+			Name is required.
+		  </mat-error>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>Description</mat-label>
+		<input formControlName="description" matInput type="text" placeholder="description">
+		<mat-error *ngIf="this.createSportTypeForm.controls.description?.errors?.required">
+			Description is required.
+		  </mat-error>
+		</mat-form-field>
+
+		<button id="create-btn" mat-raised-button color="primary" type="submit" (click)="onSubmit()"
+		[disabled]="!createSportTypeForm.valid">Create</button>
+	</form>
+</div>

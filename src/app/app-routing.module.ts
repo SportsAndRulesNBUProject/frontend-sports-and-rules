@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { SportTypesResolver } from './core/resolvers/sport-types.resolver';
+import { SportCategoriesResolver } from './core/resolvers/sport-types.resolver';
 
 
 const routes: Routes = [
@@ -9,7 +9,7 @@ const routes: Routes = [
 		path: '',
 		component: HomeComponent,
 		pathMatch: 'full',
-		resolve: { sportTypes: SportTypesResolver }
+		// resolve: { sportCategory: SportCategoriesResolver }
 	},
 	{
 		path: 'users',
@@ -24,7 +24,14 @@ const routes: Routes = [
 		.then(
 			m => m.SportsModule,
 		)
-	}
+	},
+	{
+		path: 'admin',
+		loadChildren: () => import('./admin/admin.module')
+		.then(
+			m => m.AdminModule,
+		)
+	},
 ];
 
 @NgModule({

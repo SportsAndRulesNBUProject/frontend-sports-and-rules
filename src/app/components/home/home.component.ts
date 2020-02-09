@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SportTypeDTO } from '../../sports/models/SportType.dto';
+import { SportCategoryDTO } from 'src/app/sports/models/sport-category.dto';
+import { sportCategories } from 'src/app/core/services/sports.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +10,7 @@ import { SportTypeDTO } from '../../sports/models/SportType.dto';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-	public sportTypes: SportTypeDTO[];
+	public sportTypes: SportCategoryDTO[];
   constructor(
 	  private readonly route: ActivatedRoute,
 	  private readonly router: Router,
@@ -23,7 +25,7 @@ export class HomeComponent implements OnInit {
   }
 
   public goToSportType(sportTypeId: string) {
-	this.router.navigateByUrl(`/sports/type/${sportTypeId}`);
+	this.router.navigateByUrl(`/sports/type/${sportTypeId}/categories`);
   }
 
 }

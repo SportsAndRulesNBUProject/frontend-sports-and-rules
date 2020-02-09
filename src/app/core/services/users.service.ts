@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { ShowUserDTO } from '../../users/models/show-user.dto';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class UsersService {
 
-  constructor() { }
+  constructor(
+	  private readonly http: HttpClient,
+  ) { }
 
   public getUser(id: string): Observable<ShowUserDTO> {
-	const mockUser = { id: '1abc-2abc', username: 'someone', email: 'someone@gmail.com', role: 'admin' };
-	if (id === mockUser.id) {
-		return of(mockUser);
-	} else {
-		return throwError({ msg: 'no such user' });
-	}
+	return this.http.get<ShowUserDTO>(`//localhost:8080/api/user`, {});
   }
 }

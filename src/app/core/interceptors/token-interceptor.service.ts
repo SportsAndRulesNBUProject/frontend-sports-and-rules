@@ -20,20 +20,13 @@ export class TokenInterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
 	const token = this.authCookieService.get('token');
 
-	if (token) {
-	// check if token is expired
-	// may add expiration when we set cookie !!
-
-	if ( this.authService.isTokenExpired() ) {
-		this.router.navigateByUrl('/landing');
-	}
-
- req = req.clone({
+	req = req.clone({
         setHeaders: {
           authorization: `Bearer ${token}`,
         }
       });
-    }
+	console.log(req);
+
 
  return next.handle(req);
   }

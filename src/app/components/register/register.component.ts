@@ -23,8 +23,10 @@ public registerForm: FormGroup;
 	this.registerForm = this.formBuilder.group({
 		username: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
 		email: ['', Validators.compose([Validators.required, Validators.email])],
-		password: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.pattern(passwordRegEx)])],
-		confirmPassword: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.pattern(passwordRegEx)])],
+		password: ['', Validators.compose([Validators.required, Validators.minLength(8)/*, Validators.pattern(passwordRegEx)*/])],
+		confirmPassword: ['', Validators.compose([Validators.required, Validators.minLength(8)/*, Validators.pattern(passwordRegEx)*/])],
+		firstName: ['', Validators.required],
+		lastName: ['', Validators.required],
 		keepMeLoggedIn: [false],
 	},
 	{
@@ -36,7 +38,8 @@ public registerForm: FormGroup;
   }
 
   public register() {
-	console.log(this.registerForm.value);
+	const { confirmPassword, ...rest } = this.registerForm.value;
+	this.registerEvent.emit(rest);
   }
 
 }

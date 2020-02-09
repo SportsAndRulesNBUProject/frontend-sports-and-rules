@@ -21,7 +21,7 @@ public loginForm: FormGroup;
   ngOnInit() {
 	this.loginForm = this.formBuilder.group({
 		username: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-		password: ['', [Validators.required, Validators.pattern(passwordRegEx)]],
+		password: ['', [Validators.required/*, Validators.pattern(passwordRegEx)*/]],
 	});
   }
 
