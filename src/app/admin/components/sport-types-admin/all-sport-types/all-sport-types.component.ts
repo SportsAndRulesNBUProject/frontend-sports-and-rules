@@ -24,6 +24,7 @@ displayedColumns: string[] = ['name', 'description', 'actions'];
   ngOnInit() {
 	  this.sportsService.getAllTypes().subscribe(
 		  (types: SportTypeDTO[]) => {
+			this.sportTypes = types;
 			this.dataSource = new MatTableDataSource(this.sportTypes);
 			this.dataSource.paginator = this.paginator;
 			this.dataSource.sort = this.sort;

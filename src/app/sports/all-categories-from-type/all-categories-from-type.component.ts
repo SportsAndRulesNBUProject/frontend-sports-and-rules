@@ -22,8 +22,8 @@ export class AllCategoriesFromTypeComponent implements OnInit {
 	);
   }
 
-  public goToSportType(sportTypeId: string) {
-	this.router.navigateByUrl(`/sports/type/${sportTypeId}`);
+  public goToSportFromCategory(sportCategoryId: string) {
+	this.router.navigateByUrl(`/sports/category/${sportCategoryId}`);
   }
 
 }

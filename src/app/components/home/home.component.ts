@@ -10,7 +10,7 @@ import { sportCategories } from 'src/app/core/services/sports.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-	public sportTypes: SportCategoryDTO[];
+	public sportTypes: SportTypeDTO[];
   constructor(
 	  private readonly route: ActivatedRoute,
 	  private readonly router: Router,

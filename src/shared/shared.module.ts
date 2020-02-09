@@ -29,7 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
 	MatOptionModule,
 	MatTableModule,
     MatPaginatorModule,
-    MatSortModule,
+	MatSortModule,
 
 	HttpClientModule,
   ],

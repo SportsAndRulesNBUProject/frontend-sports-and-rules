@@ -58,19 +58,48 @@ export class SportsService {
 	  private readonly http: HttpClient,
   ) { }
 
+  getAllTypes(): Observable<SportTypeDTO[]> {
+	return this.http.get<SportTypeDTO[]>(`//localhost:8080/api/sport-types/`);
+  }
+
+  createNewType(type: { name: string, description: string}) {
+	return this.http.post(`//localhost:8080/api/sport-types`, type);
+  }
+
+  deleteType(typeId: string) {
+	return this.http.delete(`//localhost:8080/api/sport-types/${typeId}`);
+  }
+
   getAllCategories(): Observable<SportCategoryDTO[]> {
 	return this.http.get<SportCategoryDTO[]>(`//localhost:8080/api/sport-categories`);
   }
 
-  getAllTypes(): Observable<SportTypeDTO[]> {
-	  return this.http.get<SportTypeDTO[]>(`//localhost:8080/api/sport-types/`);
-  }
-
-  getAllSportsFromType(typeId: string): Observable<SportDTO[]> {
-	return of(sports.filter(e => e.typeId === typeId));
-  }
-
   getAllCategoriesFromType(typeId: string): Observable<SportCategoryDTO[]> {
-	  return ;
+	  return this.http.get<SportCategoryDTO[]>(`//localhost:8080/api/sport-types/${typeId}/sport-categories`);
   }
+
+  createNewCategory(category: { name: string, typeId: string, description: string}) {
+	return this.http.post(`//localhost:8080/api/sport-categories`, category);
+  }
+
+  deleteCategory(categoryId: string) {
+	return this.http.delete(`//localhost:8080/api/sport-categories/${categoryId}`);
+  }
+
+  getAllSports() {
+	  return this.http.get<SportDTO[]>(`//localhost:8080/api/sports`);
+  }
+
+  getAllSportsFromCategory(categoryId: string): Observable<SportDTO[]> {
+	  return this.http.get<SportDTO[]>(`//localhost:8080/api/sport-categories/${categoryId}/sports`);
+  }
+
+  getSport(sportId: string): Observable<SportDTO> {
+	  return this.http.get<SportDTO>(`//localhost:8080/api/sports${sportId}`);
+  }
+
+  createSport(sport: { id: string, categoryId: string, history: string, name: string }) {
+	  this.http.post(`//localhost:8080/api/sports`, sport);
+  }
+
 }

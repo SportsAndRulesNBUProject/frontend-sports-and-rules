@@ -9,18 +9,18 @@ import { SportCategoryDTO } from 'src/app/sports/models/sport-category.dto';
 @Injectable({
 	providedIn: 'root'
 })
-export class SportCategoriesResolver implements Resolve<SportCategoryDTO[]> {
+export class SportTypesResolver implements Resolve<SportTypeDTO[]> {
 
 	constructor(
 		private readonly sportsService: SportsService,
 		private readonly router: Router,
 	) {}
 
-	resolve(): Observable<SportCategoryDTO[]> {
-		return this.sportsService.getAllCategories().pipe(
+	resolve(): Observable<SportTypeDTO[]> {
+		return this.sportsService.getAllTypes().pipe(
 			map(
-				(categories: SportCategoryDTO[]) => {
-					return categories;
+				(types: SportTypeDTO[]) => {
+					return types;
 				},
 				(error) => {
 					console.log(error.msg);

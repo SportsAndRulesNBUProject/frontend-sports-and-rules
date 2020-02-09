@@ -19,7 +19,7 @@ export class CategorySportsResolver implements Resolve<SportDTO[]> {
 
 	resolve(route: ActivatedRouteSnapshot): Observable<SportDTO[]> {
 		const id = route.paramMap.get('id');
-		return this.sportsService.getAllSportsFromType(id).pipe(
+		return this.sportsService.getAllSportsFromCategory(id).pipe(
 			map(
 				(sports: SportDTO[]) => {
 					return sports;

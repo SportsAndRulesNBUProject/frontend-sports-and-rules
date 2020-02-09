@@ -1,0 +1,31 @@
+<div>
+	<h3 class="label-text-class">Create sport category</h3>
+	<form [formGroup]="this.createSportCategoryForm">
+		<mat-form-field>
+		<mat-label>Name</mat-label>
+		<input formControlName="name" matInput type="text" placeholder="label name">
+		<mat-error *ngIf="this.createSportCategoryForm.controls.name?.errors?.required">
+			Name is required.
+		  </mat-error>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>Description</mat-label>
+		<input formControlName="description" matInput type="text" placeholder="description">
+		<mat-error *ngIf="this.createSportCategoryForm.controls.description?.errors?.required">
+			Description is required.
+		  </mat-error>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>Sport type</mat-label>
+  			<mat-select formControlName="type" required>
+			<mat-option>--</mat-option>
+    		<mat-option *ngFor="let type of this.types" [value]="type.id">
+      			{{type.name}}
+    		</mat-option>
+  </mat-select>
+		</mat-form-field>
+
+		<button id="create-btn" mat-raised-button color="primary" type="submit" (click)="onSubmit()"
+		[disabled]="!createSportCategoryForm.valid">Create</button>
+	</form>
+</div>
