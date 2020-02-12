@@ -1,12 +1,17 @@
-<button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon>Sports</button>
-<mat-sidenav-container class="example-sidenav-container"
-                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-		<app-sports-from-category-nav (changeSport)="this.changeSport($event)" [categorySports]="this.categorySports"></app-sports-from-category-nav>
-    </mat-sidenav>
+<div class="sport-main-page global-wrapper">
+    <form>
+        <mat-form-field>
+            <mat-label>Select a sport</mat-label>
+            <mat-select (selectionChange)="handleSportSelect($event)" [(ngModel)]="selectedValue" name="food">
+            <mat-option *ngFor="let sport of sports" [value]="sport">
+                {{ sport.name }}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
 
-    <mat-sidenav-content>
-		<app-sports-category></app-sports-category>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+    <div *ngIf="!selectedSport" class="sport-description-wrapper">
+        {{ currentSportCategory?.description }}
+    </div>
+    <app-sports-overview [sport]="selectedSport" *ngIf="selectedSport"></app-sports-overview>
+</div>

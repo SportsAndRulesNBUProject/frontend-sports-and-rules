@@ -1,10 +1,20 @@
+.sport-types-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.sport-type-title-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
 .sport-category-container {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	width: 90%;
-	height: auto;
 	margin-left: 5%;
 	margin-top: 3%;
 }
@@ -13,16 +23,16 @@
 	box-sizing: border-box;
 }
 
-.sport-category-container > *:not(:last-child) {
-	// margin-right: 32px;
-	margin-bottom: 32px;
+.sport-category-items-wrapper > *:last-child {
+	margin-right: 0;
 }
 
 .sport-category-item {
 	text-align: center;
 	height: 15%;
-	width: 15%;
-	flex: 0 1 calc(50% - 32px);
+    width: 15%;
+    margin-right: 10px;
+    cursor: pointer;
 }
 
 

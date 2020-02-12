@@ -8,24 +8,24 @@ import { UsersService } from '../services/users.service';
 @Injectable()
 export class UserProfileResolver implements Resolve<any> {
 
-	constructor(
-		private readonly usersService: UsersService,
-		private readonly router: Router,
-	) {}
+    constructor(
+        private readonly usersService: UsersService,
+        private readonly router: Router,
+    ) { }
 
-	resolve(route: ActivatedRouteSnapshot): Observable<ShowUserDTO> {
-		const id = route.paramMap.get('id');
-		return this.usersService.getUser(id).pipe(
-			map(
-				(user: ShowUserDTO) => {
-					return user;
-				},
-				(error) => {
-					console.log(error.msg);
-					// notify
-					// this.router.navigateByUrl('/not-found');
-				}
-			)
-		);
-	}
+    resolve(route: ActivatedRouteSnapshot): Observable<ShowUserDTO> {
+        const id = route.paramMap.get('id');
+        return this.usersService.getUser(id).pipe(
+            map(
+                (user: ShowUserDTO) => {
+                    return user;
+                },
+                (error) => {
+                    console.log(error.msg);
+                    // notify
+                    // this.router.navigateByUrl('/not-found');
+                }
+            )
+        );
+    }
 }

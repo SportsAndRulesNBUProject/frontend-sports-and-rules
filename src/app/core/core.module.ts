@@ -8,37 +8,38 @@ import { SportsService } from './services/sports.service';
 import { UsersService } from './services/users.service';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'node_modules/ngx-toastr';
+import { SportCategoryService } from './services/sport-category.service';
 
 
 
 @NgModule({
-	imports: [
-		ToastrModule.forRoot({
-		  timeOut: 5000,
-		  positionClass: 'toast-bottom-right',
-		  preventDuplicates: true,
-		  countDuplicates: true,
-		}),
-		CommonModule,
-	  ],
-	providers: [
-		AuthService,
-		AuthCookieService,
-		DialogService,
-		UsersService,
-		SportsService,
-
-		UserProfileResolver,
-		// SportTypesResolver,
-		CategorySportsResolver,
-	]
+    imports: [
+        ToastrModule.forRoot({
+            timeOut: 5000,
+            positionClass: 'toast-bottom-right',
+            preventDuplicates: true,
+            countDuplicates: true,
+        }),
+        CommonModule,
+    ],
+    providers: [
+        AuthService,
+        AuthCookieService,
+        DialogService,
+        UsersService,
+        SportsService,
+        UserProfileResolver,
+        SportCategoryService,
+        // SportTypesResolver,
+        CategorySportsResolver,
+    ]
 })
 export class CoreModule {
-	constructor(
-		@Optional() @SkipSelf() parent: CoreModule,
-	) {
-		if (parent) {
-			return parent;
-		}
-	}
+    constructor(
+        @Optional() @SkipSelf() parent: CoreModule,
+    ) {
+        if (parent) {
+            return parent;
+        }
+    }
 }
