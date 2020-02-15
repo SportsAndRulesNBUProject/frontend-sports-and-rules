@@ -1,7 +1,7 @@
 import { AchievementDTO } from './achievement.dto';
 
 export class SportDTO {
-	id: string;
+	id: number;
 	categoryId: number;
 	history: string;
 	name: string;

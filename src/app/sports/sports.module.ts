@@ -6,6 +6,8 @@ import { SportsOverviewComponent } from './sports-category/sports-overview.compo
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
 import { SportsRoutingModule } from './sports-routing.module';
+import { ChampionshipComponent } from './championship/championship.component';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
     declarations: [
@@ -13,11 +15,13 @@ import { SportsRoutingModule } from './sports-routing.module';
         SportsOverviewComponent,
         SportsCategoryMainPageComponent,
         AllCategoriesFromTypeComponent,
+        ChampionshipComponent,
     ],
     imports: [
         CommonModule,
         SharedModule,
         SportsRoutingModule,
+        PipesModule,
     ],
     exports: [
         SportsOverviewComponent,

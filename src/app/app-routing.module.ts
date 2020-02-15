@@ -5,37 +5,37 @@ import { SportTypesResolver } from './core/resolvers/sport-types.resolver';
 
 
 const routes: Routes = [
-	{
-		path: '',
-		component: HomeComponent,
-		pathMatch: 'full',
-		resolve: { sportTypes: SportTypesResolver }
-	},
-	{
-		path: 'users',
-		loadChildren: () => import('./users/users.module')
-		.then(
-			m => m.UsersModule,
-		)
-	},
-	{
-		path: 'sports',
-		loadChildren: () => import('./sports/sports.module')
-		.then(
-			m => m.SportsModule,
-		)
-	},
-	{
-		path: 'admin',
-		loadChildren: () => import('./admin/admin.module')
-		.then(
-			m => m.AdminModule,
-		)
-	},
+    {
+        path: '',
+        component: HomeComponent,
+        pathMatch: 'full',
+        resolve: { sportTypes: SportTypesResolver }
+    },
+    {
+        path: 'users',
+        loadChildren: () => import('./users/users.module')
+            .then(
+                m => m.UsersModule,
+            )
+    },
+    {
+        path: 'sports',
+        loadChildren: () => import('./sports/sports.module')
+            .then(
+                m => m.SportsModule,
+            )
+    },
+    {
+        path: 'admin',
+        loadChildren: () => import('./admin/admin.module')
+            .then(
+                m => m.AdminModule,
+            )
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

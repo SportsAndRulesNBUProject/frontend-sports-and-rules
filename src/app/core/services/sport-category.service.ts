@@ -6,7 +6,7 @@ import { SportCategoryDTO } from '../../sports/models/sport-category.dto';
     providedIn: 'root'
 })
 export class SportCategoryService {
-    public readonly SortCategory$ = new BehaviorSubject<SportCategoryDTO>(null);
+    public readonly SportCategory$ = new BehaviorSubject<SportCategoryDTO>(null);
 
     constructor() { }
 

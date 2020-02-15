@@ -1,13 +1,13 @@
 <div class="sport-types-container">
     <ng-container class="ng-container sport-category-items-wrapper"
-        *ngFor="let sportCategory of this.sportCategory">
+        *ngFor="let sportCategory of this.sportCategories">
         <mat-card class="sport-category-item"
             (click)="this.goToSportFromCategory(sportCategory)">
             <mat-card-header class="sport-type-title-wrapper">
                 <mat-card-title>{{ sportCategory.name }}</mat-card-title>
             </mat-card-header>
             <img mat-card-image
-                [src]="sportCategory.imgUrl"
+                [src]="sportCategory.image"
                 alt="sportType.name">
             <mat-card-content>
                 <p>

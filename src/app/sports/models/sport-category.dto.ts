@@ -4,6 +4,6 @@ export class SportCategoryDTO {
 	id: string;
 	name: string;
 	type: SportTypeDTO;
-	imgUrl: string;
+	image: string;
 	description: string;
 }

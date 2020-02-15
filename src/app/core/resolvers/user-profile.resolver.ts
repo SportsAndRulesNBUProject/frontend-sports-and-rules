@@ -18,6 +18,7 @@ export class UserProfileResolver implements Resolve<any> {
         return this.usersService.getUser(id).pipe(
             map(
                 (user: ShowUserDTO) => {
+                    console.log(user);
                     return user;
                 },
                 (error) => {

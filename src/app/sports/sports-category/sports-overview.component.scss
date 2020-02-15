@@ -1,4 +1,22 @@
-.sports-overview mat-tab-group {
-    display: flex;
-    justify-content: center;
+.sports-overview table {
+    margin-top: 20px;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.sports-overview .table-row {
+    cursor: pointer;
+    &:hover {
+        background: rgb(190, 190, 190);
+    }
+}
+
+.history {
+    line-height: 28px;
+    font-size: 18px;
+    padding: 0 5%;
+    transform: none;
+    letter-spacing: 0.4px;
+    margin-top: 20px;
+    font-weight: 200;
 }

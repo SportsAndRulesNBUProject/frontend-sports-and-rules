@@ -1,8 +1,7 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { SportDTO } from '../models/sport.dto';
-import * as uuidv1 from 'uuid/v1';
 import { MatSelectChange } from '@angular/material';
 import { SportCategoryService } from '../../core/services/sport-category.service';
 import { SportCategoryDTO } from '../models/sport-category.dto';
@@ -18,12 +17,14 @@ export class SportsCategoryMainPageComponent implements OnInit, OnDestroy {
     public sportSelected: string;
     public selectedSport: SportDTO;
     public currSport: SportDTO;
+    public selectedValue: any;
     public currentSportCategory: SportCategoryDTO;
 
     constructor(
         changeDetectorRef: ChangeDetectorRef,
         media: MediaMatcher,
-        private readonly route: ActivatedRoute,
+        private readonly activeRoute: ActivatedRoute,
+        private readonly router: Router,
         private readonly sportCategoryService: SportCategoryService,
     ) {
         this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -35,35 +36,20 @@ export class SportsCategoryMainPageComponent implements OnInit, OnDestroy {
     private _mobileQueryListener: () => void;
 
     ngOnInit() {
-        this.sportCategoryService.SortCategory$.subscribe((sportCategory) => {
+        const currentSportId = +this.activeRoute.snapshot.queryParamMap.get('sportId');
+        this.sportCategoryService.SportCategory$.subscribe((sportCategory) => {
             this.currentSportCategory = sportCategory;
         });
 
-        this.route.data.subscribe(
+        this.activeRoute.data.subscribe(
             ({ sports }) => {
-                this.sports = [
-                    {
-                        id: uuidv1(),
-                        categoryId: 6,
-                        history: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, quos!',
-                        name: 'Football',
-                        achievements: [],
-                    },
-                    {
-                        id: uuidv1(),
-                        categoryId: 6,
-                        history: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, quos!',
-                        name: 'Baseball',
-                        achievements: [],
-                    },
-                    {
-                        id: uuidv1(),
-                        categoryId: 6,
-                        history: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, quos!',
-                        name: 'Basketball',
-                        achievements: [],
-                    }
-                ];
+                this.sports = sports;
+
+                if (currentSportId) {
+                    this.selectedSport = this.sports.find((sport) => sport.id === currentSportId);
+                    this.selectedValue = this.selectedSport;
+                    this.handleQueryParamsChange(currentSportId);
+                }
             }
         );
     }
@@ -72,8 +58,21 @@ export class SportsCategoryMainPageComponent implements OnInit, OnDestroy {
         this.mobileQuery.removeListener(this._mobileQueryListener);
     }
 
-    handleSportSelect(event: MatSelectChange) {
+    handleSportSelect(event: MatSelectChange): void {
         this.selectedSport = event.value;
+        this.handleQueryParamsChange(this.selectedSport.id);
     }
 
+    handleQueryParamsChange(sportId: number): void {
+        const queryParams: Params = { sportId };
+
+        this.router.navigate(
+            [],
+            {
+                relativeTo: this.activeRoute,
+                queryParams,
+                queryParamsHandling: 'merge', // remove to replace all query params by provided
+            }
+        );
+    }
 }

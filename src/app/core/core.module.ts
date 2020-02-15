@@ -9,6 +9,7 @@ import { UsersService } from './services/users.service';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'node_modules/ngx-toastr';
 import { SportCategoryService } from './services/sport-category.service';
+import { ChampionshipService } from './services/championship.service';
 
 
 
@@ -31,6 +32,7 @@ import { SportCategoryService } from './services/sport-category.service';
         UserProfileResolver,
         SportCategoryService,
         // SportTypesResolver,
+        ChampionshipService,
         CategorySportsResolver,
     ]
 })

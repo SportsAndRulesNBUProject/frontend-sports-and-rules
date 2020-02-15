@@ -1,0 +1,89 @@
+<div class="championship global-wrapper">
+    <div class="title-wrapper">
+        <button mat-icon-button
+            class="back-button"
+            (click)="handleBack()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <div class="title-icon">
+            <img src="https://i.pinimg.com/originals/02/c3/89/02c389d623743bc82598ceedc79ae97a.jpg" />
+        </div>
+        <div class="title-name">
+            European Championship
+        </div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="teams-wrapper">
+        <div class="teams-text">
+            Teams:
+        </div>
+        <div class="teams">
+            <div class="team-box">
+                <div class="team-box-image">
+                    <img
+                        src="https://previews.123rf.com/images/uhland38/uhland381812/uhland38181200240/117054900-logo-of-english-football-team-manchester-city-united-kingdom-.jpg" />
+                </div>
+                <div class="team-box-name">
+                    Manchester City
+                </div>
+            </div>
+            <div class="team-box">
+                <div class="team-box-image">
+                    <img
+                        src="https://previews.123rf.com/images/uhland38/uhland381812/uhland38181200240/117054900-logo-of-english-football-team-manchester-city-united-kingdom-.jpg" />
+                </div>
+                <div class="team-box-name">
+                    Manchester City
+                </div>
+            </div>
+            <div class="team-box">
+                <div class="team-box-image">
+                    <img
+                        src="https://previews.123rf.com/images/uhland38/uhland381812/uhland38181200240/117054900-logo-of-english-football-team-manchester-city-united-kingdom-.jpg" />
+                </div>
+                <div class="team-box-name">
+                    Manchester City
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="comments">
+        <div class="comments-title">
+            Comments:
+        </div>
+
+        <div class="comments-input">
+            <mat-form-field>
+                <textarea
+                    matInput
+                    [formControl]="commentFormControl"
+                    cdkTextareaAutosize
+                    placeholder="Write a comment..."
+                    #autosize="cdkTextareaAutosize"
+                    ></textarea>
+            </mat-form-field>
+            <mat-icon (click)="handleAddComment()">add_comment</mat-icon>
+        </div>
+
+        <div class="comments-wrapper">
+            <mat-card *ngFor="let comment of comments" class="comment-section">
+                <div class="comment-content-wrapper">
+                    <div class="comment-profile-image">
+                        <img src="../../../assets/img/person.png">
+                    </div>
+                    <div>
+                        <p class="comment-text">
+                            <span class="comment-name-author">{{ comment.user.name }}</span> &#183; {{ comment.content }}
+                        </p>
+                        <div class="comment-date">{{ comment.createdAt | convertTimeFormat }}</div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>
