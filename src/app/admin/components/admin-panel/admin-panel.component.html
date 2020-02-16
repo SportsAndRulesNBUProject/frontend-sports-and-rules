@@ -1,17 +1,20 @@
-<h1>Admin Panel</h1>
-<mat-tab-group>
-    <mat-tab label="Sport Types">
-        <ng-template mat-tab-label>
-            <mat-icon class="custom-tab-icon">build</mat-icon>
-		</ng-template>
-		<app-all-sport-types></app-all-sport-types>
-		<app-create-sport-type (createSportTypeEvent)="this.createSportTypeEvent($event)"></app-create-sport-type>
-	</mat-tab>
-	<mat-tab label="Sport Categories">
-        <ng-template mat-tab-label>
-            <mat-icon class="custom-tab-icon">build</mat-icon>
-		</ng-template>
-		<app-all-sport-types></app-all-sport-types>
-		<app-create-category-admin (createSportCategoryEvent)="this.createSportCategoryEvent($event)"></app-create-category-admin>
-    </mat-tab>
-</mat-tab-group>
+<div class="admin-panel global-wrapper">
+    <h1>Admin Panel</h1>
+    <mat-tab-group>
+        <mat-tab label="Sport Types">
+            <ng-template mat-tab-label>
+                Sport Type
+            </ng-template>
+            <button mat-raised-button class="add-new" (click)="openDialog()">Add new</button>
+            <app-all-sport-types *ngIf="sportTypes" [sportTypes]="sportTypes"></app-all-sport-types>
+        </mat-tab>
+
+        <mat-tab label="Sport Categories">
+            <ng-template mat-tab-label>
+                Sport Category
+            </ng-template>
+            <button mat-raised-button class="add-new" (click)="openDialog()">Add new</button>
+            <app-all-sport-types></app-all-sport-types>
+        </mat-tab>
+    </mat-tab-group>
+</div>

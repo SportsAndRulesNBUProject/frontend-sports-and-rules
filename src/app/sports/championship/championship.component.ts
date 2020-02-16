@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 
@@ -9,6 +9,8 @@ import { Location } from '@angular/common';
 })
 export class ChampionshipComponent implements OnInit {
     public commentFormControl: FormControl;
+    public isCalendarOpened = false;
+    public selectedDate = new Date('2020-02-28T21:24:00');
     public comments = [
         {
             user: { name: 'Gosho' },
@@ -41,6 +43,23 @@ export class ChampionshipComponent implements OnInit {
             createdAt: new Date(),
         }
     ];
+
+    @ViewChild('calendar', { static: false }) public calendarWrapper: ElementRef;
+    @ViewChild('calendarButton', { static: false }) public calendarButton: ElementRef;
+
+    @HostListener('document:click', ['$event.path'])
+    handleOutsideClick(targetElementPath: any[]) {
+        const isCalendarButtonClicked = targetElementPath.some((element) => element === this.calendarButton.nativeElement);
+        if (!this.calendarWrapper || isCalendarButtonClicked) {
+            return;
+        }
+
+        const elementRefInPath = targetElementPath.find(element => element === this.calendarWrapper.nativeElement);
+        if (!elementRefInPath) {
+            this.isCalendarOpened = !this.isCalendarOpened;
+        }
+    }
+
     constructor(
         private readonly location: Location,
     ) { }
@@ -64,5 +83,9 @@ export class ChampionshipComponent implements OnInit {
 
     public handleBack(): void {
         this.location.back();
+    }
+
+    public handleCalendarOpen(): void {
+        this.isCalendarOpened = !this.isCalendarOpened;
     }
 }

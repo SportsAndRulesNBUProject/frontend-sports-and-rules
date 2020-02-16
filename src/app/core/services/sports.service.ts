@@ -14,10 +14,9 @@ export class SportsService {
 
     getAllTypes(): Observable<SportTypeDTO[]> {
         return this.http.get<SportTypeDTO[]>(`//localhost:8080/api/sport-types/`);
-        // return of(sportCategories);
     }
 
-    createNewType(type: { name: string, description: string }) {
+    createNewType(type: { name: string, description: string }): any {
         return this.http.post(`//localhost:8080/api/sport-types`, type);
     }
 

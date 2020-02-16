@@ -1,8 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// tslint:disable-next-line:max-line-length
-import { MatCardModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatListModule, MatOptionModule, MatSelectModule, MatSidenavModule, MatTabsModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import {
+    MatCardModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatListModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatTabsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+} from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -31,6 +45,8 @@ import { HttpClientModule } from '@angular/common/http';
         MatPaginatorModule,
         MatSortModule,
         HttpClientModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
     ],
     declarations: [
         NavigationComponent,
@@ -57,6 +73,8 @@ import { HttpClientModule } from '@angular/common/http';
         MatPaginatorModule,
         MatSortModule,
         HttpClientModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
     ],
 })
 

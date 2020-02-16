@@ -3,6 +3,7 @@ import { MatTabGroup, MatSort, MatTableDataSource } from '@angular/material';
 import { SportDTO } from '../models/sport.dto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SubscribedComponent } from '../../../shared/subscription-destroy/subscription-destroy.component';
+import { dayMonthYearCalendarFormat } from '../../common/constants/date-formats';
 
 @Component({
     selector: 'app-sports-overview',
@@ -15,13 +16,13 @@ export class SportsOverviewComponent extends SubscribedComponent implements OnIn
     @ViewChild(MatSort, { static: true }) sort: MatSort;
 
     public championships = [
-        { date: '1/2/2020', name: 'Hydrogen', host: 'UEFA', id: 1 },
-        { date: '1/2/2020', name: 'Helium', host: 'FA Cup', id: 2 },
-        { date: '1/2/2020', name: 'Lithium', host: 'EFL Cup', id: 3 },
-        { date: '1/2/2020', name: 'Beryllium', host: 'National League', id: 4 },
+        { date: new Date('2020-02-28T21:24:00'), name: 'Hydrogen', host: 'UEFA', id: 1 },
+        { date: new Date('2020-02-28T21:24:00'), name: 'Helium', host: 'FA Cup', id: 2 },
+        { date: new Date('2020-02-28T21:24:00'), name: 'Lithium', host: 'EFL Cup', id: 3 },
+        { date: new Date('2020-02-28T21:24:00'), name: 'Beryllium', host: 'National League', id: 4 },
     ];
     public readonly displayedColumns: string[] = ['date', 'name', 'host'];
-    public dataSource = new MatTableDataSource(this.championships);
+    public dataSource: MatTableDataSource<any>;
 
     constructor(
         private readonly activeRouter: ActivatedRoute,
@@ -37,7 +38,7 @@ export class SportsOverviewComponent extends SubscribedComponent implements OnIn
     }
 
     public ngOnInit() {
-
+        this.dataSource = new MatTableDataSource(this.championships);
         this.dataSource.sort = this.sort;
     }
 

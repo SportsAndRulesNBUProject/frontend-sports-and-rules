@@ -1,27 +1,28 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
-  selector: 'app-create-sport-type',
-  templateUrl: './create-sport-type.component.html',
-  styleUrls: ['./create-sport-type.component.scss']
+    selector: 'app-create-sport-type',
+    templateUrl: './create-sport-type.component.html',
+    styleUrls: ['./create-sport-type.component.scss']
 })
-export class CreateSportTypeComponent implements OnInit {
-public createSportTypeForm: FormGroup;
-public createSportTypeEvent: EventEmitter<{name: string, description: string}> = new EventEmitter();
-  constructor(
-	  private readonly fb: FormBuilder,
-  ) { }
+export class CreateSportTypeComponent implements OnInit{
+    public createSportTypeForm: FormGroup;
 
-  ngOnInit() {
-	  this.createSportTypeForm = this.fb.group({
-		  name: ['', Validators.required],
-		  description: ['', Validators.required]
-	  });
-  }
+    constructor(
+        private readonly fb: FormBuilder,
+        public dialogRef: MatDialogRef<CreateSportTypeComponent>
+    ) { }
 
-  onSubmit() {
-	  this.createSportTypeEvent.emit(this.createSportTypeForm.value);
-  }
+    ngOnInit() {
+        this.createSportTypeForm = this.fb.group({
+            name: ['', Validators.required],
+            description: ['', Validators.required]
+        });
+    }
 
+    public onCancel(): void {
+        this.dialogRef.close();
+    }
 }

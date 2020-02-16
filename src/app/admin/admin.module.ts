@@ -13,19 +13,22 @@ import { CreateSportAdminComponent } from './components/sports-admin/create-spor
 
 
 @NgModule({
-  declarations: [
-	  AdminPanelComponent,
-	  CreateSportTypeComponent,
-	  AllSportTypesComponent,
-	  AllCategoriesAdminComponent,
-	  CreateCategoryAdminComponent,
-	  AllSportsAdminComponent,
-	  CreateSportAdminComponent,
-  ],
-  imports: [
-	CommonModule,
-	SharedModule,
-	AdminRoutingModule,
-  ]
+    declarations: [
+        AdminPanelComponent,
+        CreateSportTypeComponent,
+        AllSportTypesComponent,
+        AllCategoriesAdminComponent,
+        CreateCategoryAdminComponent,
+        AllSportsAdminComponent,
+        CreateSportAdminComponent,
+    ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        AdminRoutingModule,
+    ],
+    entryComponents: [
+        CreateSportTypeComponent,
+    ]
 })
 export class AdminModule { }

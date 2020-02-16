@@ -1,22 +1,37 @@
-<div>
-	<h3 class="label-text-class">Create sport type</h3>
-	<form [formGroup]="this.createSportTypeForm">
-		<mat-form-field>
-		<mat-label>Name</mat-label>
-		<input formControlName="name" matInput type="text" placeholder="label name">
-		<mat-error *ngIf="this.createSportTypeForm.controls.name?.errors?.required">
-			Name is required.
-		  </mat-error>
-		</mat-form-field>
-		<mat-form-field>
-			<mat-label>Description</mat-label>
-		<input formControlName="description" matInput type="text" placeholder="description">
-		<mat-error *ngIf="this.createSportTypeForm.controls.description?.errors?.required">
-			Description is required.
-		  </mat-error>
-		</mat-form-field>
+<div class="create-sport-type">
+    <h3 class="label-text-class">Create sport type</h3>
+    <form class="form-wrapper" [formGroup]="this.createSportTypeForm">
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input formControlName="name"
+                matInput
+                type="text"
+                placeholder="label name">
+            <mat-error *ngIf="this.createSportTypeForm.controls.name?.errors?.required">
+                Name is required.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <input formControlName="description"
+                matInput
+                type="text"
+                placeholder="description">
+            <mat-error *ngIf="this.createSportTypeForm.controls.description?.errors?.required">
+                Description is required.
+            </mat-error>
+        </mat-form-field>
 
-		<button id="create-btn" mat-raised-button color="primary" type="submit" (click)="onSubmit()"
-		[disabled]="!createSportTypeForm.valid">Create</button>
-	</form>
+        <div class="action-buttons">
+            <button class="create-btn"
+                mat-raised-button
+                cdkFocusInitial
+                color="primary"
+                [mat-dialog-close]="createSportTypeForm.value"
+                [disabled]="!createSportTypeForm.valid">
+                Create
+            </button>
+            <button mat-button (click)="onCancel()">Cancel</button>
+        </div>
+    </form>
 </div>

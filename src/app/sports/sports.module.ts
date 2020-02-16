@@ -25,6 +25,7 @@ import { PipesModule } from './pipes/pipes.module';
     ],
     exports: [
         SportsOverviewComponent,
+        ChampionshipComponent,
     ]
 })
 export class SportsModule { }

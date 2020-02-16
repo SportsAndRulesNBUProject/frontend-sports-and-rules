@@ -87,3 +87,15 @@
         </div>
     </div>
 </div>
+
+<div *ngIf="isCalendarOpened" #calendar class="date-picker">
+    <mat-calendar [selected]="selectedDate" (selectedChange)="handleDateSelect()"></mat-calendar>
+</div>
+
+<div #calendarButton (click)="handleCalendarOpen()" class="calendar">
+    <div class="calendar-wrapper">
+        <button class="calendar-button">
+            <mat-icon>calendar_today</mat-icon>
+        </button>
+    </div>
+</div>

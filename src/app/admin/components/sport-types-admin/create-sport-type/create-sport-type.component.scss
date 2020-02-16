@@ -1,3 +1,20 @@
-.label-text-class {
-  font-family: 'Lobster', cursive;
+.create-sport-type {
+    font-family: Roboto;
+    text-align: center;
+
+    .form-wrapper {
+        display: block;
+    }
+
+    mat-form-field {
+        width: 80%;
+    }
+
+    .create-btn {
+        margin-right: 10px;
+    }
+
+    .action-buttons {
+        margin-top: 15px;
+    }
 }

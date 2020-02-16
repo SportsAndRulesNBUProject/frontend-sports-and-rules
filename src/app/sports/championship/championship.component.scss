@@ -98,7 +98,7 @@
 
         .comment-section {
             margin-bottom: 10px;
-            max-width: fit-content // THE DREAM
+            max-width: fit-content; // THE DREAM
         }
 
         .comment-profile-image img {
@@ -131,4 +131,47 @@
             font-weight: bold;
         }
     }
+}
+
+.calendar {
+    display: flex;
+    position: fixed;
+    top: 20%;
+
+    .calendar-wrapper {
+        border: 2px solid #74cc00;
+        padding: 5px;
+        border-left: none;
+        border-radius: 0 8px 8px 0;
+        cursor: pointer;
+
+        .calendar-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+
+            &:focus {
+                outline: 0;
+            }
+
+            mat-icon {
+                color: #6d6d6d;
+            }
+        }
+
+        &:hover {
+            background: #e4e4e4;
+        }
+    }
+}
+
+.date-picker {
+    position: fixed;
+    top: 20%;
+    left: 55px;
+    padding: 0 5px 5px 5px;
+    border: 2px solid #74cc00;
+    background: white;
+    border-radius: 5px;
+    min-height: 268px;
 }
