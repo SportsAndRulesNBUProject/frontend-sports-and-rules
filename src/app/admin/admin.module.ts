@@ -29,6 +29,7 @@ import { CreateSportAdminComponent } from './components/sports-admin/create-spor
     ],
     entryComponents: [
         CreateSportTypeComponent,
+        CreateCategoryAdminComponent,
     ]
 })
 export class AdminModule { }

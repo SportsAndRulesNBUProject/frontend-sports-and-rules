@@ -17,7 +17,7 @@
 		</mat-form-field>
 		<mat-form-field>
 			<mat-label>Sport type</mat-label>
-  			<mat-select formControlName="type" required>
+  			<mat-select formControlName="typeId" required>
 			<mat-option>--</mat-option>
     		<mat-option *ngFor="let type of this.types" [value]="type.id">
       			{{type.name}}
@@ -25,7 +25,13 @@
   </mat-select>
 		</mat-form-field>
 
-		<button id="create-btn" mat-raised-button color="primary" type="submit" (click)="onSubmit()"
-		[disabled]="!createSportCategoryForm.valid">Create</button>
+		<button class="create-btn"
+                mat-raised-button
+                cdkFocusInitial
+                color="primary"
+                [mat-dialog-close]="this.createSportCategoryForm.value"
+                [disabled]="!this.createSportCategoryForm.valid">
+                Create
+            </button>
 	</form>
 </div>

@@ -5,7 +5,7 @@
             <ng-template mat-tab-label>
                 Sport Type
             </ng-template>
-            <button mat-raised-button class="add-new" (click)="openDialog()">Add new</button>
+            <button mat-raised-button class="add-new" (click)="openCreateTypeDialog()">Add new</button>
             <app-all-sport-types *ngIf="sportTypes" [sportTypes]="sportTypes"></app-all-sport-types>
         </mat-tab>
 
@@ -13,8 +13,8 @@
             <ng-template mat-tab-label>
                 Sport Category
             </ng-template>
-            <button mat-raised-button class="add-new" (click)="openDialog()">Add new</button>
-            <app-all-sport-types></app-all-sport-types>
+            <button mat-raised-button class="add-new" (click)="openCreateCategoryDialog()">Add new</button>
+            <app-all-categories-admin *ngIf="sportCategories" [sportCategories]="this.sportCategories"></app-all-categories-admin>
         </mat-tab>
     </mat-tab-group>
 </div>

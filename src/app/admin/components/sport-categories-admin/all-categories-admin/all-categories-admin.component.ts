@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { SportCategoryDTO } from 'src/app/sports/models/sport-category.dto';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { SportsService } from 'src/app/core/services/sports.service';
@@ -11,26 +11,20 @@ import { SportTypeDTO } from '../../../../sports/models/SportType.dto';
 })
 export class AllCategoriesAdminComponent implements OnInit {
 
-    public sportTypes: SportTypeDTO[];
+    @Input() public sportCategories: SportCategoryDTO[];
     displayedColumns: string[] = ['name', 'description', 'type', 'actions'];
-    dataSource: MatTableDataSource<SportTypeDTO>;
+    dataSource: MatTableDataSource<SportCategoryDTO>;
 
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: true }) sort: MatSort;
 
     constructor(
-        private readonly sportsService: SportsService,
     ) { }
 
     ngOnInit() {
-        this.sportsService.getAllTypes().subscribe(
-            (sportTypes: SportTypeDTO[]) => {
-                this.sportTypes = sportTypes;
-                this.dataSource = new MatTableDataSource(this.sportTypes);
-                this.dataSource.paginator = this.paginator;
-                this.dataSource.sort = this.sort;
-            }
-        );
+        this.dataSource = new MatTableDataSource(this.sportCategories);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
     }
 
     applyFilter(event: Event) {

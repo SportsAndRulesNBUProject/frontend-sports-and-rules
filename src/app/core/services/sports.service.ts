@@ -33,7 +33,9 @@ export class SportsService {
         // return of(sports);
     }
 
-    createNewCategory(category: { name: string, typeId: string, description: string }) {
+    createNewCategory(category: { name: string, typeId: string, description: string }): any {
+        console.log(category);
+
         return this.http.post(`//localhost:8080/api/sport-categories`, category);
     }
 

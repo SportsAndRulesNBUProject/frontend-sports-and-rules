@@ -7,7 +7,7 @@ import { MatDialogRef } from '@angular/material';
     templateUrl: './create-sport-type.component.html',
     styleUrls: ['./create-sport-type.component.scss']
 })
-export class CreateSportTypeComponent implements OnInit{
+export class CreateSportTypeComponent implements OnInit {
     public createSportTypeForm: FormGroup;
 
     constructor(

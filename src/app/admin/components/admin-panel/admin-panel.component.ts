@@ -6,6 +6,8 @@ import { CreateSportTypeComponent } from '../sport-types-admin/create-sport-type
 import { SubscribedComponent } from '../../../../shared/subscription-destroy/subscription-destroy.component';
 import { takeUntil } from 'rxjs/operators';
 import { SportTypeDTO } from '../../../sports/models/SportType.dto';
+import { SportCategoryDTO } from 'src/app/sports/models/sport-category.dto';
+import { CreateCategoryAdminComponent } from '../sport-categories-admin/create-category-admin/create-category-admin.component';
 
 @Component({
     selector: 'app-admin-panel',
@@ -15,6 +17,7 @@ import { SportTypeDTO } from '../../../sports/models/SportType.dto';
 
 export class AdminPanelComponent extends SubscribedComponent implements OnInit {
     public sportTypes: SportTypeDTO[];
+    public sportCategories: SportCategoryDTO[];
 
     constructor(
         private readonly notificationsService: NotificationService,
@@ -30,6 +33,12 @@ export class AdminPanelComponent extends SubscribedComponent implements OnInit {
             .subscribe((sportTypes) => {
                 this.sportTypes = sportTypes;
             });
+
+        this.sportsService.getAllCategories()
+            .pipe(takeUntil(this.componentDestroyed$))
+            .subscribe((sportCategories) => {
+                this.sportCategories = sportCategories;
+            });
     }
 
     public createSportTypeEvent(event: { name: string, description: string }): void {
@@ -44,10 +53,13 @@ export class AdminPanelComponent extends SubscribedComponent implements OnInit {
     }
 
     public createSportCategoryEvent(event: { name: string, description: string, typeId: string }) {
+        console.log(event);
+
         this.sportsService.createNewCategory(event).subscribe(
             (res) => {
                 console.log(res);
 
+                this.sportCategories = [...this.sportCategories, res];
             },
             (error) => {
                 this.notificationsService.error(error.message);
@@ -56,7 +68,7 @@ export class AdminPanelComponent extends SubscribedComponent implements OnInit {
     }
 
     // This is full of shit way of doing it, but will leave it like that because we have to finish this
-    public openDialog(): void {
+    public openCreateTypeDialog(): void {
         this.dialog
             .open(CreateSportTypeComponent, {
                 width: '400px',
@@ -69,5 +81,19 @@ export class AdminPanelComponent extends SubscribedComponent implements OnInit {
                     this.createSportTypeEvent(createdSportType);
                 }
             });
+    }
+
+    public openCreateCategoryDialog(): void {
+        this.dialog.open(CreateCategoryAdminComponent, {
+            width: '400px',
+            data: { types: this.sportTypes },
+        })
+        .afterClosed()
+        .pipe(takeUntil(this.componentDestroyed$))
+        .subscribe((createdSportCategory) => {
+            if (createdSportCategory) {
+                this.createSportCategoryEvent(createdSportCategory);
+            }
+        });
     }
 }

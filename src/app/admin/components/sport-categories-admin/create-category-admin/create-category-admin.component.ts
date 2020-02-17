@@ -1,7 +1,8 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SportTypeDTO } from 'src/app/sports/models/SportType.dto';
 import { SportsService } from 'src/app/core/services/sports.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-create-category-admin',
@@ -11,28 +12,25 @@ import { SportsService } from 'src/app/core/services/sports.service';
 export class CreateCategoryAdminComponent implements OnInit {
 	public createSportCategoryForm: FormGroup;
 	public types: SportTypeDTO[];
-	public createSportCategoryEvent: EventEmitter<{name: string, description: string}> = new EventEmitter();
 	  constructor(
 		  private readonly fb: FormBuilder,
-		  private readonly sportsService: SportsService,
+    public dialogRef: MatDialogRef<CreateCategoryAdminComponent>,
+    @Inject(MAT_DIALOG_DATA)
+    public data: { types: SportTypeDTO[] }
 	  ) { }
 
 	  ngOnInit() {
 		  this.createSportCategoryForm = this.fb.group({
 			  name: ['', Validators.required],
 			  description: ['', Validators.required],
-			  type: ['', Validators.required],
-		  });
+			  typeId: ['', Validators.required],
+          });
 
-		  this.sportsService.getAllTypes().subscribe(
-			  (types: SportTypeDTO[]) => {
-				this.types = types;
-			  }
-		  );
+    this.types = this.data.types;
 	  }
 
-	  onSubmit() {
-		  this.createSportCategoryEvent.emit(this.createSportCategoryForm.value);
-	  }
+	  onCancel() {
+        this.dialogRef.close();
+      }
 
 	}
